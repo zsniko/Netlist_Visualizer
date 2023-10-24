@@ -5,6 +5,7 @@
 
 namespace Netlist{
 
+    // CTOR
     Instance::Instance( Cell* owner, Cell* model, const std::string& name )
         : owner_(owner), masterCell_(model), name_(name), terms_(), position_()
     {   
@@ -16,6 +17,7 @@ namespace Netlist{
         owner->add(this); // On ajoute l'instance a la Cell
     }
 
+    // DTOR
     Instance::~Instance()
     {
         for ( std::vector<Term*>::const_iterator it = terms_.begin(); it != terms_.end(); ++it ){
@@ -24,6 +26,7 @@ namespace Netlist{
         owner_->remove(this); // On retire l'instance de la Cell
     }
 
+    // Fonctions Accesseurs
     Term* Instance::getTerm( const std::string& s ) const
     {   
         // On parcourt le vecteur des Termes de l'instance pour trouver le Term de nom s
@@ -33,7 +36,8 @@ namespace Netlist{
         }
         return NULL;
     }
-
+    
+    // Fonctions Modificateurs
     bool Instance::connect( const std::string& s, Net* n )
     { 
         if ( getTerm(s) != NULL ){
@@ -80,6 +84,7 @@ namespace Netlist{
         position_.setY(y); 
     }
 
+    // XML driver
     void Instance::toXml( std::ostream& stream )
     { 
         stream << indent << "<instance name=\"" << getName() << "\" mastercell=\"" << getMasterCell()->getName() 

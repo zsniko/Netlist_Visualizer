@@ -8,17 +8,17 @@
 
 namespace Netlist{
     
-    // Constructeur: Term - Cell
+    // CTOR: Term - Cell
     Term::Term (Cell* c, const std::string& name, Direction d )
     : owner_(c), name_(name), direction_(d), type_(External), net_(), node_(this, Node::noid) // A la creation d'un Term, l'id_ de node_ est initialise a noid.
     { c->add(this); } 
 
-    // Constructeur: Term - Instance
+    // CTOR: Term - Instance
     Term::Term (Instance* i, const Term* modelTerm)
     : owner_(i), name_(modelTerm->getName()), direction_(modelTerm->getDirection()), type_(Internal), net_(), node_(this, Node::noid)
     { i->add(this); }
 
-    // Destructeur 
+    // DTOR 
     Term::~Term ()
     { 
         if (type_ == External) // Si Term appartenant a une Instance 
@@ -121,7 +121,7 @@ namespace Netlist{
             exit ( 1 );
     }
 
-    // Fonctions XML
+    // XML driver
     void  Term::toXml ( std::ostream& stream ){
         stream << indent << "<term name=\"" << name_ << "\" direction=\"" << toString(direction_) << "\"" << std::endl;
     }

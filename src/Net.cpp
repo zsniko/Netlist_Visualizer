@@ -5,10 +5,12 @@
 
 namespace Netlist{
 
+    // CTOR
     Net::Net ( Cell* c, const std::string& s, Term::Type t)
     : owner_(c), name_(s), id_(), type_(t), nodes_()
     { c->add(this); } // Surcharge - Net
 
+    // DTOR
     Net::~Net()
     { 
         for (std::vector<Node*>::iterator it = nodes_.begin() ; it != nodes_.end() ; ++it){
@@ -19,6 +21,7 @@ namespace Netlist{
         owner_->remove(this); // retirer le Net de la Cell
     }
 
+    // Fonctions Accesseurs
     size_t Net::getFreeNodeId() const
     { 
         for ( std::vector<Node*>::const_iterator it = nodes_.begin() ; it != nodes_.end() ; ++it){
@@ -27,6 +30,7 @@ namespace Netlist{
         return nodes_.size(); // Si tous les elements du vecteur sont non NULL, on retourne la taille du vecteur
     }
 
+    // Fonctions Modificateurs
     void Net::add( Node* n )
     {  
         if (n != NULL){
@@ -54,6 +58,7 @@ namespace Netlist{
             return false;
     }
 
+    // XML driver
     void Net::toXml( std::ostream& stream )
     { 
         stream << indent++ << "<net name=\"" << name_ << "\" type=\"" << Term::toString(type_) << "\">" << std::endl; // <net name = "xxx" type = "xxx">

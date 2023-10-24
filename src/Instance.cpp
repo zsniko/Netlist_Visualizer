@@ -38,6 +38,8 @@ namespace Netlist{
     }
     
     // Fonctions Modificateurs
+
+    // Connecter un terminal de l'instance a un Net
     bool Instance::connect( const std::string& s, Net* n )
     { 
         if ( getTerm(s) != NULL ){
@@ -48,6 +50,7 @@ namespace Netlist{
             return false;
     }
 
+    // Ajouter un terminal a l'instance
     void Instance::add( Term* t )
     { 
         if ( t !=  NULL ){
@@ -61,6 +64,7 @@ namespace Netlist{
         }
     }
 
+    // Retirer un terminal de l'instance
     void Instance::remove( Term* t )
     { 
         if ( t != NULL){
@@ -72,12 +76,14 @@ namespace Netlist{
             }
         }
     }
-   
+    
+    // Definir la position de l'instance
     void Instance::setPosition( const Point& p ) 
     { 
         position_ = p; 
     }
 
+    // Definir la position de l'instance
     void Instance::setPosition( int x, int y ) 
     { 
         position_.setX(x); 

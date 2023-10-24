@@ -24,37 +24,37 @@ namespace Netlist{
 
         public:
             // CTOR et DTOR
-                                        Term        ( Cell*, const std::string& name, Direction); //
-                                        Term        ( Instance*, const Term* modelTerm ); //
-                                        ~Term       (); // 
+                                        Term        ( Cell*, const std::string& name, Direction);  
+                                        Term        ( Instance*, const Term* modelTerm );             
+                                        ~Term       ();                                                
         
             // Accesseurs
-            inline  bool                isInternal  () const; //
-            inline  bool                isExternal  () const; //
-            inline  const std::string&  getName     () const; //
-            inline  Node*               getNode     ();       //
-            inline  Net*                getNet      () const; // 
-            inline  Cell*               getCell     () const;//
-                    Cell*               getOwnerCell() const;// 
-            inline  Instance*           getInstance () const; //
-            inline  Direction           getDirection() const;//
-            inline  Point               getPosition () const;//
-            inline  Type                getType     () const;//
+            inline  bool                isInternal  () const;                   // si le Term est interne
+            inline  bool                isExternal  () const;                   // si le Term est externe
+            inline  const std::string&  getName     () const;                   // recuperer le nom du Term
+            inline  Node*               getNode     ();                         // recuperer le Node du Term
+            inline  Net*                getNet      () const;                   // recuperer le Net du Term
+            inline  Cell*               getCell     () const;                   // recuperer la Cell a laquelle appartient le Term
+                    Cell*               getOwnerCell() const;                   // recuperer la Cell a laquelle appartient le Term 
+            inline  Instance*           getInstance () const;                   // recuperer l'Instance a laquelle appartient le Term
+            inline  Direction           getDirection() const;                   // recuperer la direction du Term
+            inline  Point               getPosition () const;                   // recuperer la position du Term
+            inline  Type                getType     () const;                   // recuperer le type du Term (Internal ou External)
 
             // Modificateurs
-                    void                setNet      ( Net* ); // 
-                    void                setNet      ( const std::string& ); // 
-            inline  void                setDirection( Direction );      // 
-                    void                setPosition ( const Point& );  //
-                    void                setPosition ( int x, int y ); //
+                    void                setNet      ( Net* );                   // connecter le Term a un Net
+                    void                setNet      ( const std::string& );     // connecter le Term a un Net de nom s 
+            inline  void                setDirection( Direction );              // definir la direction du Term 
+                    void                setPosition ( const Point& );           // definir la position du Term
+                    void                setPosition ( int x, int y );           // definir la position du Term
             
             // Methodes statiques pour convertir depuis/vers string
-            static  std::string         toString    ( Type ); // 
-            static  std::string         toString    ( Direction ); //
-            static  Direction           toDirection ( std::string ); //
+            static  std::string         toString    ( Type );                   // convertir un Type en string
+            static  std::string         toString    ( Direction );              // convertir une Direction en string
+            static  Direction           toDirection ( std::string );            // convertir une string en Direction
             
             // Methodes pour le XML
-            void                        toXml       ( std::ostream& ); // not finished
+            void                        toXml       ( std::ostream& );          // driver XML 
 
         private:
             // Attributs

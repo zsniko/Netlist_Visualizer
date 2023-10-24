@@ -22,6 +22,7 @@ namespace Netlist{
     }
 
     // Fonctions Accesseurs
+    // recuperer le vecteur des Nodes du Net
     size_t Net::getFreeNodeId() const
     { 
         for ( std::vector<Node*>::const_iterator it = nodes_.begin() ; it != nodes_.end() ; ++it){
@@ -31,6 +32,7 @@ namespace Netlist{
     }
 
     // Fonctions Modificateurs
+    // ajouter un Node au Net
     void Net::add( Node* n )
     {  
         if (n != NULL){
@@ -43,6 +45,7 @@ namespace Netlist{
         }
     }
 
+    // retirer un Node du Net
     bool Net::remove( Node* n )
     {   
         if ( n != NULL ) {

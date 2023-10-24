@@ -17,26 +17,26 @@ namespace Netlist{
 
         public: 
             // CTOR et DTOR 
-                                                Instance        ( Cell* owner, Cell* model, const std::string& );  // not finished
-                                                ~Instance       (); // not finished
+                                                Instance        ( Cell* owner, Cell* model, const std::string& ); 
+                                                ~Instance       (); 
 
             // Accesseurs
-            inline  const std::string&          getName         () const; //
-            inline  Cell*                       getMasterCell   () const; //
-            inline  Cell*                       getCell         () const; //
-            inline  const std::vector<Term*>&   getTerms        () const; //
-                    Term*                       getTerm         ( const std::string& ) const; // not finished 
-            inline  Point                       getPosition     () const; //
+            inline  const std::string&          getName         () const;                           // recuperer le nom de l'instance
+            inline  Cell*                       getMasterCell   () const;                           // recuperer la Cell (interne)
+            inline  Cell*                       getCell         () const;                           // recuperer la Cell (externe)
+            inline  const std::vector<Term*>&   getTerms        () const;                           // recuperer le vecteur des terminaux de l'instance
+                    Term*                       getTerm         ( const std::string& ) const;       // recuperer un terminal de l'instance
+            inline  Point                       getPosition     () const;                           // recuperer la position de l'instance
 
             // Modificateurs
-            bool                                connect         ( const std::string& name, Net* ); // not finished
-            void                                add             ( Term* ); // not finished
-            void                                remove          ( Term* ); // not finished
-            void                                setPosition     ( const Point& ); // 
-            void                                setPosition     ( int x, int y ); // 
+            bool                                connect         ( const std::string& name, Net* );  // connecter un terminal de l'instance a un Net
+            void                                add             ( Term* );                          // ajouter un terminal a l'instance
+            void                                remove          ( Term* );                          // retirer un terminal de l'instance
+            void                                setPosition     ( const Point& );                   // definir la position de l'instance
+            void                                setPosition     ( int x, int y );                   // definir la position de l'instance
             
             // XML
-            void                                toXml           ( std::ostream& ); // not finished
+            void                                toXml           ( std::ostream& );                  // driver XML 
         
         private:
             // Attributs

@@ -14,23 +14,23 @@ namespace Netlist{
 
         public:
             // CTOR et DTOR 
-                                                Net             ( Cell*, const std::string&, Term::Type );  // 
-                                                ~Net            ();   // 
+                                                Net             ( Cell*, const std::string&, Term::Type );  
+                                                ~Net            ();    
             
             // Accesseurs
-            inline Cell*                        getCell         () const; //
-            inline const std::string&           getName         () const; //
-            inline unsigned int                 getId           () const; //
-            inline Term::Type                   getType         () const; //
-            inline const std::vector<Node*>&    getNodes        () const; // 
-            size_t                              getFreeNodeId   () const; // 
+            inline Cell*                        getCell         () const;           // recuperer la Cell a laquelle appartient le Net
+            inline const std::string&           getName         () const;           // recuperer le nom du Net
+            inline unsigned int                 getId           () const;           // recuperer l'id du Net
+            inline Term::Type                   getType         () const;           // recuperer le type du Net (External ou Internal)
+            inline const std::vector<Node*>&    getNodes        () const;           // recuperer le vecteur des Nodes du Net
+            size_t                              getFreeNodeId   () const;           // recuperer l'id du premier Node NULL du vecteur des Nodes du Net
 
             // Modificateurs
-            void                                add             ( Node* ); // 
-            bool                                remove          ( Node* ); // 
+            void                                add             ( Node* );          // ajouter un Node au Net
+            bool                                remove          ( Node* );          // retirer un Node du Net
 
             // XML 
-            void                                toXml           ( std::ostream& ); // not finished 
+            void                                toXml           ( std::ostream& );  // driver XML
 
         private:
             // Attributs

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<cell name="or2">
+  <terms>
+    <term name="i0" direction="In"  x="0" y="0"/>
+    <term name="i1" direction="In"  x="0" y="0"/>
+    <term name="q"  direction="Out" x="0" y="0"/>
+  </terms>
+  <instances>
+  </instances>
+  <nets>
+  </nets>
+</cell>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<cell name="halfadder">
+  <terms>
+    <term name="a"    direction="In"  x="0"   y="120"/>
+    <term name="b"    direction="In"  x="0"   y="200"/>
+    <term name="sout" direction="Out" x="300" y="80" />
+    <term name="cout" direction="Out" x="300" y="230"/>
+  </terms>
+  <instances>
+    <instance name="xor2_1" mastercell="xor2" x="150" y="200"/>
+    <instance name="and2_1" mastercell="and2" x="150" y="50" />
+  </instances>
+  <nets>
+    <net name="a" type="External">
+      <node term="a"                    id="0"/>
+      <node term="i0" instance="xor2_1" id="1"/>
+      <node term="i0" instance="and2_1" id="2"/>
+    </net>
+    <net name="b" type="External">
+      <node term="b"                    id="10"/>
+      <node term="i1" instance="xor2_1" id="11"/>
+      <node term="i1" instance="and2_1" id="12"/>
+    </net>
+    <net name="sout" type="External">
+      <node term="sout"                id="6"/>
+      <node term="q" instance="and2_1" id="7"/>
+    </net>
+    <net name="cout" type="External">
+      <node term="cout"                id="8"/>
+      <node term="q" instance="xor2_1" id="9"/>
+    </net>
+  </nets>
+</cell>

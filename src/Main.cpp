@@ -109,7 +109,7 @@ int main ( int argc, char* argv[] )
   fa_or2->connect( "q"    , fa_cout );
 
   fulladder->toXml( cout );
-
+  
   delete fulladder;
   delete halfadder;
   delete xor2;

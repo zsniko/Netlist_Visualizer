@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<cell name="inverter">
+  <terms>
+    <term name="i" net="i" direction="In"  x="0"   y="170"/>
+    <term name="o" net="o" direction="Out" x="170" y="170"/>
+  </terms>
+  <instances>
+    <instance name="VDD" mastercell="vdd"        x="90"  y="310"/>
+    <instance name="VSS" mastercell="gnd"        x="90"  y="0"  />
+    <instance name="T1"  mastercell="TransistorN" x="70"  y="50" />
+      <!--
+      <Parameters>
+        <ElectricalParameter name="W" unit="Meter" value="5.0e-6"/>
+      </Parameters>
+      -->
+    <instance name="T2"  mastercell="TransistorP" x="70"  y="200"/>
+      <!--
+      <Parameters>
+        <ElectricalParameter name="W" unit="Meter" value="10.0e-6"/>
+      </Parameters>
+      -->
+  </instances>
+  <nets>
+    <net name="vdd" type="Internal">
+      <node term="vdd" instance="VDD" id="0"/>
+      <node term="S"   instance="T2"  id="1"/>
+      <line source="0" target="1"/>
+    </net>
+    <net name="vss" type="Internal">
+      <node term="vss" instance="VSS" id="0"/>
+      <node term="S"   instance="T1"  id="1"/>
+      <line source="0" target="1"/>
+    </net>
+    <net name="i" type="External">
+      <node term="i" id="0"/>
+      <node term="G" instance="T1" id="2"/>
+      <node term="G" instance="T2" id="1"/>
+      <node x="40" y="170" id="3"/>
+      <node x="40" y="90"  id="4"/>
+      <node x="40" y="240" id="5"/>
+      <line source="0" target="3"/>
+      <line source="3" target="4"/>
+      <line source="4" target="2"/>
+      <line source="3" target="5"/>
+      <line source="5" target="1"/>
+    </net>
+    <net name="o" type="External">
+      <node term="o" id="0"/>
+      <node term="D" instance="T1" id="1"/>
+      <node term="D" instance="T2" id="2"/>
+      <node x="110" y="170" id="3"/>
+      <line source="1" target="3"/>
+      <line source="2" target="3"/>
+      <line source="3" target="0"/>
+    </net>
+  </nets>
+  <symbol>
+  </symbol>
+</cell>

@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<cell name="or2">
+  <terms>
+    <term name="i0" direction="In"  x="0"   y="180"/>
+    <term name="i1" direction="In"  x="0"   y="420"/>
+    <term name="q"  direction="Out" x="400" y="260"/>
+  </terms>
+  <instances>
+    <instance name="VDD" mastercell="vdd"         x="240"  y="520"/>
+    <instance name="VSS" mastercell="gnd"         x="240"  y="20"  />
+    <instance name="T1"  mastercell="TransistorN" x="200"  y="60" />
+    <instance name="T2"  mastercell="TransistorN" x="120"  y="140"/>
+    <instance name="T3"  mastercell="TransistorP" x="160"  y="300"/>
+    <instance name="T4"  mastercell="TransistorP" x="160"  y="380"/>
+    <instance name="T5"  mastercell="TransistorN" x="320"  y="140" />
+    <instance name="T6"  mastercell="TransistorP" x="320"  y="300"/>
+  </instances>
+  <nets>
+    <net name="vss" type="Internal">
+      <node term="vss" instance="VSS" id="0"/>
+      <node term="S"   instance="T1"  id="1"/>
+      <node term="S"   instance="T2"  id="2"/>
+      <node term="S"   instance="T5"  id="3"/>
+      <node x="160" y="40" id="4"/>
+      <node x="240" y="40" id="5"/>
+      <node x="360" y="40" id="6"/>
+      <line source="2" target="4"/>
+      <line source="4" target="5"/>
+      <line source="1" target="5"/>
+      <line source="5" target="0"/>
+      <line source="3" target="6"/>
+      <line source="6" target="0"/>
+    </net>
+    <net name="vdd" type="Internal">
+      <node term="vdd" instance="VDD" id="0"/>
+      <node term="S"   instance="T4"  id="1"/>
+      <node term="S"   instance="T6"  id="2"/>
+      <node x="200" y="480" id="4"/>
+      <node x="260" y="480" id="5"/>
+      <node x="360" y="480" id="6"/>
+      <line source="1" target="4"/>
+      <line source="4" target="5"/>
+      <line source="5" target="0"/>
+      <line source="2" target="6"/>
+      <line source="6" target="5"/>
+    </net>
+    <net name="nq" type="Internal">
+      <node term="D"   instance="T1"  id="0"/>
+      <node term="D"   instance="T2"  id="1"/>
+      <node term="D"   instance="T3"  id="2"/>
+      <node term="G"   instance="T5"  id="3"/>
+      <node term="G"   instance="T6"  id="4"/>
+      <node x="160" y="260" id="5"/>
+      <node x="200" y="260" id="6"/>
+      <node x="240" y="260" id="7"/>
+      <node x="280" y="260" id="8"/>
+      <node x="280" y="180" id="9"/>
+      <node x="280" y="340" id="10"/>
+      <line source="1" target="5"/>
+      <line source="5" target="6"/>
+      <line source="2" target="6"/>
+      <line source="6" target="7"/>
+      <line source="0" target="7"/>
+      <line source="7" target="8"/>
+      <line source="8" target="9"/>
+      <line source="9" target="3"/>
+      <line source="8" target="10"/>
+      <line source="10" target="4"/>
+    </net>
+    <net name="n1" type="Internal">
+      <node term="D" instance="T4" id="0"/>
+      <node term="S" instance="T3" id="1"/>
+      <line source="0" target="1"/>
+    </net>
+    <net name="q" type="External">
+      <node term="q" id="0"/>
+      <node term="D" instance="T5" id="1"/>
+      <node term="D" instance="T6" id="2"/>
+      <node x="360" y="260" id="3"/>
+      <line source="1" target="3"/>
+      <line source="2" target="3"/>
+      <line source="3" target="0"/>
+    </net>
+    <net name="i0" type="External">
+      <node term="i0" id="0"/>
+      <node term="G" instance="T2" id="1"/>
+      <node term="G" instance="T3" id="2"/>
+      <node x="80" y="180" id="3"/>
+      <node x="80" y="340" id="4"/>
+      <line source="0" target="3"/>
+      <line source="3" target="1"/>
+      <line source="3" target="4"/>
+      <line source="4" target="2"/>
+    </net>
+    <net name="i1" type="External">
+      <node term="i1" id="0"/>
+      <node term="G" instance="T1" id="1"/>
+      <node term="G" instance="T4" id="2"/>
+      <node x="40" y="100" id="3"/>
+      <node x="40" y="420" id="4"/>
+      <line source="0" target="4"/>
+      <line source="3" target="1"/>
+      <line source="3" target="4"/>
+      <line source="4" target="2"/>
+    </net>
+  </nets>
+  <symbol>
+    <arc x1="-80" y1="-20" x2="20" y2="80" start="-45" span="90"/>
+    <arc x1="-50" y1="-60" x2="70" y2="65" start="90" span="-65"/>
+    <arc x1="-50" y1="-5" x2="70" y2="120" start="-90" span="65"/>
+    <line x1="-20" y1="10" x2="15" y2="10"/>
+    <line x1="-20" y1="50" x2="15" y2="50"/>
+    <line x1="65" y1="30" x2="90" y2="30"/>
+    <term name="i0" x1="-20" y1="10" align="top_right"/>
+    <term name="i1" x1="-20" y1="50" align="top_right"/>
+    <term name="q" x1="90" y1="30" align="top_left"/>
+  </symbol>
+</cell>

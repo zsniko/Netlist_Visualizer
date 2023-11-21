@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<cell name="xor2">
+  <terms>
+    <term name="i0" direction="In"  x="0" y="0"/>
+    <term name="i1" direction="In"  x="0" y="0"/>
+    <term name="q"  direction="Out" x="0" y="0"/>
+  </terms>
+  <instances>
+  </instances>
+  <nets>
+  </nets>
+  <symbol>
+    <!--
+    <box x1="0" y1="0" x2="40" y2="60"/>
+    -->
+    <arc x1="-90" y1="-20" x2="10" y2="80" start="-45" span="90"/>
+    <arc x1="-80" y1="-20" x2="20" y2="80" start="-45" span="90"/>
+    <arc x1="-50" y1="-60" x2="70" y2="65" start="90" span="-65"/>
+    <arc x1="-50" y1="-5" x2="70" y2="120" start="-90" span="65"/>
+    <line x1="-20" y1="10" x2="5" y2="10"/>
+    <line x1="-20" y1="50" x2="5" y2="50"/>
+    <line x1="70" y1="30" x2="90" y2="30"/>
+    <term name="i0" x1="-20" y1="10" align="top_left"/>
+    <term name="i1" x1="-20" y1="50" align="top_left"/>
+    <term name="q" x1="90" y1="30" align="top_right"/>
+  </symbol>
+</cell>

@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<cell name="halfadder">
+  <terms>
+    <term name="a"    direction="In"  x="0"   y="120"/>
+    <term name="b"    direction="In"  x="0"   y="200"/>
+    <term name="sout" direction="Out" x="300" y="80" />
+    <term name="cout" direction="Out" x="300" y="230"/>
+  </terms>
+  <instances>
+    <instance name="xor2_1" mastercell="xor2" x="150" y="200"/>
+    <instance name="and2_1" mastercell="and2" x="150" y="50" />
+  </instances>
+  <nets>
+    <net name="a" type="External">
+      <node term="a"                    id="0"/>
+      <node term="i0" instance="xor2_1" id="1"/>
+      <node term="i0" instance="and2_1" id="2"/>
+      <node x="100" y="120"             id="3"/>
+      <node x="100" y="60"              id="4"/>
+      <node x="100" y="210"             id="5"/>
+      <line source="0" target="3"/>
+      <line source="3" target="4"/>
+      <line source="4" target="2"/>
+      <line source="3" target="5"/>
+      <line source="5" target="1"/>
+    </net>
+    <net name="b" type="External">
+      <node term="b"                    id="10"/>
+      <node term="i1" instance="xor2_1" id="11"/>
+      <node term="i1" instance="and2_1" id="12"/>
+      <node x="80" y="200"              id="13"/>
+      <node x="80" y="100"              id="14"/>
+      <node x="80" y="250"              id="15"/>
+      <line source="10" target="13"/>
+      <line source="13" target="14"/>
+      <line source="14" target="12"/>
+      <line source="13" target="15"/>
+      <line source="15" target="11"/>
+    </net>
+    <net name="sout" type="External">
+      <node term="sout"                id="6"/>
+      <node term="q" instance="and2_1" id="7"/>
+      <line source="6" target="7"/>
+    </net>
+    <net name="cout" type="External">
+      <node term="cout"                id="8"/>
+      <node term="q" instance="xor2_1" id="9"/>
+      <line source="8" target="9"/>
+    </net>
+  </nets>
+  <symbol>
+    <box x1="20" y1="0" x2="100" y2="80"/>
+    <line x1="0" y1="20" x2="20" y2="20"/>
+    <line x1="0" y1="60" x2="20" y2="60"/>
+    <line x1="100" y1="20" x2="120" y2="20"/>
+    <line x1="100" y1="60" x2="120" y2="60"/>
+    <line x1="40" y1="40" x2="80" y2="40"/>
+    <line x1="60" y1="20" x2="60" y2="60"/>
+    <term name="a" x1="0" y1="60" align="top_right"/>
+    <term name="b" x1="0" y1="20" align="top_right"/>
+    <term name="cout" x1="120" y1="20" align="top_left"/>
+    <term name="sout" x1="120" y1="60" align="top_left"/>
+  </symbol>
+</cell>

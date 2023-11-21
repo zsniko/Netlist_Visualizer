@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<cell name="TransistorP">
+  <terms>
+    <term name="S" direction="In"  x="0" y="0"/>
+    <term name="D" direction="Out" x="0" y="0"/>
+    <term name="G" direction="In"  x="0" y="0"/>
+  </terms>
+  <instances>
+  </instances>
+  <nets>
+  </nets>
+  <!--
+  <parameters>
+    <transistorType name="type" type="N"/>
+    <electricalParameter name="W" unit="Meter" value="1.0e-6"/>
+    <electricalParameter name="L" unit="Meter" value="1.0e-6"/>
+  </parameters>
+  -->
+  <symbol>
+    <term name="S" x1="40" y1="80" align="top_right"/>
+    <term name="D" x1="40" y1="0"  align="bottom_right"/>
+    <term name="G" x1="0"  y1="40" align="top_left"/>
+    <line x1="40" y1="80" x2="40" y2="55"/>
+    <line x1="40" y1="55" x2="25" y2="55"/>
+    <line x1="25" y1="55" x2="25" y2="25"/>
+    <line x1="25" y1="25" x2="40" y2="25"/>
+    <!-- Arrow -->
+    <line x1="25" y1="55" x2="35" y2="60"/>
+    <line x1="25" y1="55" x2="35" y2="50"/>
+    <!-- Arrow end -->
+    <line x1="40" y1="25" x2="40" y2="0"/>
+    <line x1="0"  y1="40" x2="10" y2="40"/>
+    <line x1="20" y1="25" x2="20" y2="55"/>
+    <ellipse x1="10" y1="35" x2="20" y2="45"/>
+  </symbol>
+</cell>

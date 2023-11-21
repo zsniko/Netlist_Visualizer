@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<cell name="gnd">
+  <terms>
+    <term name="vss" direction="Out" x="0" y="0"/>
+  </terms>
+  <instances>
+  </instances>
+  <nets>
+  </nets>
+  <!--
+  <parameters>
+    <electricalparameter name="v" unit="Volt" value="0.0"/>
+  </parameters>
+  -->
+  <symbol>
+    <term name="vss" x1="20" y1="20"  align="top_right"/>
+    <line x1="20" y1="0"  x2="20" y2="20"/>
+    <line x1="10" y1="0"  x2="30" y2="0" />
+    <line x1="10" y1="0"  x2="20" y2="-10" />
+    <line x1="30" y1="0"  x2="20" y2="-10" />
+  </symbol>
+</cell>

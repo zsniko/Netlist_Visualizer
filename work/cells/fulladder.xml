@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<cell name="fulladder">
+  <terms>
+    <term name="a"    direction="In"  x="-20" y="100"/>
+    <term name="b"    direction="In"  x="-20" y="60" />
+    <term name="cin"  direction="In"  x="-20" y="140"/>
+    <term name="sout" direction="Out" x="520" y="140"/>
+    <term name="cout" direction="Out" x="520" y="30" />
+  </terms>
+  <instances>
+    <instance name="ha1"  mastercell="halfadder" x="40"   y="40"/>
+    <instance name="ha2"  mastercell="halfadder" x="200"  y="80"/>
+    <instance name="or"   mastercell="or2"       x="380"  y="0" />
+  </instances>
+  <nets>
+    <net name="b" type="External">
+      <node term="b" id="0"/>
+      <node term="b" instance="ha1" id="1"/>
+      <line source="0" target="1"/>
+    </net>
+    <net name="a" type="External">
+      <node term="a" id="0"/>
+      <node term="a" instance="ha1" id="1"/>
+      <line source="0" target="1"/>
+    </net>
+    <net name="cin" type="External">
+      <node term="cin" id="0"/>
+      <node term="a" instance="ha2" id="1"/>
+      <line source="0" target="1"/>
+    </net>
+    <net name="sout" type="External">
+      <node term="sout" id="0"/>
+      <node term="sout" instance="ha2" id="1"/>
+      <line source="0" target="1"/>
+    </net>
+    <net name="cout" type="External">
+      <node term="cout" id="0"/>
+      <node term="q" instance="or" id="1"/>
+      <line source="0" target="1"/>
+    </net>
+    <net name="sout_1" type="Internal">
+      <node term="sout" instance="ha1" id="0"/>
+      <node term="b"    instance="ha2" id="1"/>
+      <line source="0" target="1"/>
+    </net>
+    <net name="carry_1" type="Internal">
+      <node term="cout" instance="ha1" id="0"/>
+      <node term="i0"   instance="or"  id="1"/>
+      <node x="200" y="60" id="2"/>
+      <node x="200" y="10" id="3"/>
+      <line source="0" target="2"/>
+      <line source="2" target="3"/>
+      <line source="3" target="1"/>
+    </net>
+    <net name="carry_2" type="Internal">
+      <node term="cout" instance="ha2" id="0"/>
+      <node term="i1"   instance="or"  id="1"/>
+      <node x="340" y="100" id="2"/>
+      <node x="340" y="50"  id="3"/>
+      <line source="0" target="2"/>
+      <line source="2" target="3"/>
+      <line source="3" target="1"/>
+    </net>
+  </nets>
+  <symbol>
+  </symbol>
+</cell>

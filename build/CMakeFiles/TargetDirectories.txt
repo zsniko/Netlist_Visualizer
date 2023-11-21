@@ -1,0 +1,7 @@
+/Users/zhifansong/Desktop/MOBJ/MOBJ/build/CMakeFiles/tme7.dir
+/Users/zhifansong/Desktop/MOBJ/MOBJ/build/CMakeFiles/edit_cache.dir
+/Users/zhifansong/Desktop/MOBJ/MOBJ/build/CMakeFiles/rebuild_cache.dir
+/Users/zhifansong/Desktop/MOBJ/MOBJ/build/CMakeFiles/list_install_components.dir
+/Users/zhifansong/Desktop/MOBJ/MOBJ/build/CMakeFiles/install.dir
+/Users/zhifansong/Desktop/MOBJ/MOBJ/build/CMakeFiles/install/local.dir
+/Users/zhifansong/Desktop/MOBJ/MOBJ/build/CMakeFiles/install/strip.dir

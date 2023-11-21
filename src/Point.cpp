@@ -1,4 +1,4 @@
-// -*- explicit-buffer-name: "Point.cpp<M1-MOBJ/4-5>" -*-
+// -*- explicit-buffer-name: "Point.cpp<M1-MOBJ/7>" -*-
 
 #include "Point.h"
 #include "Cell.h"

@@ -1,10 +1,13 @@
-// -*- explicit-buffer-name: "Instance.h<M1-MOBJ/4-5>" -*-
+// -*- explicit-buffer-name: "Instance.h<M1-MOBJ/7>" -*-
 
 #ifndef NETLIST_INSTANCE_H
 #define NETLIST_INSTANCE_H
 #include "Term.h"
 #include "Point.h"
 #include "Cell.h"
+#include <fstream>
+#include "XmlUtil.h"
+#include <libxml/xmlreader.h>
 
 namespace Netlist{
 
@@ -36,8 +39,8 @@ namespace Netlist{
             void                                setPosition     ( int x, int y );                   // definir la position de l'instance
             
             // XML
-            void                                toXml           ( std::ostream& );                  // driver XML 
-        
+            void                                toXml           ( std::ostream& ) const;            // driver XML 
+            static  Instance*                   fromXml         ( Cell*, xmlTextReaderPtr );        // parseur XML
         private:
             // Attributs
             Cell*               owner_;         // Cell* a laquelle appartient l'instance

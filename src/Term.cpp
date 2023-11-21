@@ -1,4 +1,4 @@
-// -*- explicit-buffer-name: "Term.cpp<M1-MOBJ/4-5>" -*-
+// -*- explicit-buffer-name: "Term.cpp<M1-MOBJ/7>" -*-
 
 #include "Term.h"
 #include "Cell.h"
@@ -78,8 +78,10 @@ namespace Netlist{
     { 
         if (t == Internal) 
             return "Internal"; 
-        else 
+        else if (t == External)
             return "External"; 
+        else    
+            exit ( 1 );
     }
 
     std::string Term::toString ( Direction d )
@@ -102,6 +104,15 @@ namespace Netlist{
             exit ( 1 ); break;
         }
     }
+    Term::Type Term::toType( std::string s )
+    {
+        if ( s == "Internal" )  
+            return Internal;
+        else if ( s == "External" )
+            return External;
+        else 
+            exit ( 1 );
+    }
 
     Term::Direction Term::toDirection ( std::string s )
     {
@@ -122,9 +133,30 @@ namespace Netlist{
     }
 
     // XML driver
-    void  Term::toXml ( std::ostream& stream ){
-        stream << indent << "<term name=\"" << name_ << "\" direction=\"" << toString(direction_) << "\"" << std::endl;
+    void  Term::toXml ( std::ostream& stream ) const {
+        stream << indent << "<term name=\"" << name_ 
+        << "\" direction=\"" << toString(direction_) 
+        << "\" x=\"" << getPosition().getX()
+        << "\" y=\"" << getPosition().getY()
+        << "\"/>" << std::endl;
     }
+
+    // XML Parseur
+    Term* Term::fromXml( Cell* cell, xmlTextReaderPtr reader){
+        std::string name_s        = xmlCharToString ( xmlTextReaderGetAttribute ( reader, (const xmlChar*)"name") );
+        std::string direction_s   = xmlCharToString ( xmlTextReaderGetAttribute ( reader, (const xmlChar*)"direction" ) );
+        std::string x_s           = xmlCharToString ( xmlTextReaderGetAttribute ( reader, (const xmlChar*)"x") );
+        std::string y_s           = xmlCharToString ( xmlTextReaderGetAttribute ( reader, (const xmlChar*)"y") );
+        if (not name_s.empty()){
+            Term* term = new Term (cell, name_s, Term::toDirection(direction_s));
+            term->setPosition(atoi(x_s.c_str()), atoi(y_s.c_str()));
+            return term;
+        }
+        else{
+            std::cerr << "Echec de chargement de Term" << std::endl;
+            return NULL; // En cas d'erreur la fonction renverra un pointeur NULL.
+        }
+    }   
 
 }
 

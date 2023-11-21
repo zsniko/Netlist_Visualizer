@@ -1,10 +1,13 @@
-// -*- explicit-buffer-name: "Term.h<M1-MOBJ/4-5>" -*-
+// -*- explicit-buffer-name: "Term.h<M1-MOBJ/7>" -*-
 
 #ifndef NETLIST_TERM_H
 #define NETLIST_TERM_H
 
 #include "Node.h"
 #include "Indentation.h"
+#include <fstream>
+#include "XmlUtil.h"
+#include <libxml/xmlreader.h>
 
 
 namespace Netlist{
@@ -32,7 +35,7 @@ namespace Netlist{
             inline  bool                isInternal  () const;                   // si le Term est interne
             inline  bool                isExternal  () const;                   // si le Term est externe
             inline  const std::string&  getName     () const;                   // recuperer le nom du Term
-            inline  Node*               getNode     ();                         // recuperer le Node du Term
+            inline  NodeTerm*           getNode     ();                         // recuperer le Node du Term
             inline  Net*                getNet      () const;                   // recuperer le Net du Term
             inline  Cell*               getCell     () const;                   // recuperer la Cell a laquelle appartient le Term
                     Cell*               getOwnerCell() const;                   // recuperer la Cell a laquelle appartient le Term 
@@ -52,9 +55,11 @@ namespace Netlist{
             static  std::string         toString    ( Type );                   // convertir un Type en string
             static  std::string         toString    ( Direction );              // convertir une Direction en string
             static  Direction           toDirection ( std::string );            // convertir une string en Direction
+            static  Type                toType      ( std::string );            // convertir une string en Type
             
             // Methodes pour le XML
-            void                        toXml       ( std::ostream& );          // driver XML 
+            void                        toXml       ( std::ostream& ) const;          // driver XML 
+            static  Term*               fromXml     ( Cell*, xmlTextReaderPtr );// parseur XML, static car on ne connait pas encore le Term
 
         private:
             // Attributs
@@ -63,7 +68,7 @@ namespace Netlist{
             Direction           direction_;     // Direction du Term
             Type                type_;          // Type du Term (Internal: Instance, External: Cell)
             Net*                net_;           // Net auquel est connecte le Term
-            Node                node_;          // Node associe au Term
+            NodeTerm            node_;          // Node associe au Term
 
     };
 
@@ -71,7 +76,7 @@ namespace Netlist{
 inline bool             Term::isInternal                ()      const { return getType() == Internal; }
 inline bool             Term::isExternal                ()      const { return getType() == External; }
 inline const            std::string& Term::getName      ()      const { return name_; }
-inline Node*            Term::getNode                   ()            { return &node_; }
+inline NodeTerm*        Term::getNode                   ()            { return &node_; }
 inline Net*             Term::getNet                    ()      const { return net_; }
 inline Cell*            Term::getCell                   ()      const { return type_ == External ? static_cast<Cell*> (owner_) : NULL; }
 inline Instance*        Term::getInstance               ()      const { return type_ == Internal ? static_cast<Instance*> (owner_): NULL; }

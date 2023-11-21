@@ -1,4 +1,4 @@
-// -*- explicit-buffer-name: "Point.h<M1-MOBJ/4-5>" -*-
+// -*- explicit-buffer-name: "Point.h<M1-MOBJ/7>" -*-
 
 #ifndef NETLIST_POINT_H
 #define NETLIST_POINT_H

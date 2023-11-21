@@ -1,7 +1,8 @@
-// -*- explicit-buffer-name: "Instance.cpp<M1-MOBJ/4-5>" -*-
+// -*- explicit-buffer-name: "Instance.cpp<M1-MOBJ/7>" -*-
 
 #include "Instance.h"
 #include "Term.h"
+#include "Symbol.h"
 
 namespace Netlist{
 
@@ -14,7 +15,7 @@ namespace Netlist{
             Term* term = new Term(this, *it); // On cree un nouveau Term
             terms_.push_back(term); // On l'ajoute au vecteur des Termes de l'instance
         }
-        owner->add(this); // On ajoute l'instance a la Cell
+        owner->add(this);// On ajoute l'instance a la Cell
     }
 
     // DTOR
@@ -80,22 +81,57 @@ namespace Netlist{
     // Definir la position de l'instance
     void Instance::setPosition( const Point& p ) 
     { 
-        position_ = p; 
+        std::vector<Term*> terms = getTerms(); // Recuperer le vecteur de Terms de l'instance
+        for (std::vector<Term*>::const_iterator iterms = terms.begin(); iterms != terms.end(); ++iterms){
+            Shape* shape = getMasterCell()->getSymbol()->getTermShape(*iterms); // Recuperer le TermShape associe au Term
+            TermShape* termshape = dynamic_cast<TermShape*>(shape);
+            
+            if(termshape) (*iterms)->setPosition(p.getX() + termshape->getX1(), p.getY() + termshape->getY1());
+        }
+        position_ = p;
     }
 
     // Definir la position de l'instance
     void Instance::setPosition( int x, int y ) 
     { 
-        position_.setX(x); 
-        position_.setY(y); 
+        std::vector<Term*> terms = getTerms(); // Recuperer le vecteur de Terms de l'instance
+        for (std::vector<Term*>::const_iterator iterms = terms.begin(); iterms != terms.end(); ++iterms){
+            Shape* shape = getMasterCell()->getSymbol()->getTermShape(*iterms); // Recuperer le TermShape associe au Term
+            TermShape* termshape = dynamic_cast<TermShape*>(shape);
+            
+            if(termshape) (*iterms)->setPosition(termshape->getX1() + x, termshape->getY1() + y);  
+        }
+        position_ = Point(x, y);
     }
 
     // XML driver
-    void Instance::toXml( std::ostream& stream )
+    void Instance::toXml( std::ostream& stream ) const
     { 
-        stream << indent << "<instance name=\"" << getName() << "\" mastercell=\"" << getMasterCell()->getName() 
-        << "\" x=\"" << getPosition().getX() <<"\" y=\"" << getPosition().getY() <<"\"" << std::endl;
+        stream << indent << "<instance name=\"" << getName() 
+        << "\" mastercell=\"" << getMasterCell()->getName() 
+        << "\" x=\"" << getPosition().getX() 
+        <<"\" y=\"" << getPosition().getY() <<"\"/>" << std::endl;
     }
-    
 
+    // XML parseur
+    Instance* Instance::fromXml( Cell* cell, xmlTextReaderPtr reader )
+    {
+        std::string name_s        = xmlCharToString ( xmlTextReaderGetAttribute ( reader, (const xmlChar*)"name") );
+        std::string masterCell_s  = xmlCharToString ( xmlTextReaderGetAttribute ( reader, (const xmlChar*)"mastercell") );
+        std::string x_s           = xmlCharToString ( xmlTextReaderGetAttribute ( reader, (const xmlChar*)"x") );
+        std::string y_s           = xmlCharToString ( xmlTextReaderGetAttribute ( reader, (const xmlChar*)"y") );
+        if (not name_s.empty()){
+            Instance* inst = new Instance (cell, Cell::find(masterCell_s), name_s);
+            inst->setPosition(atoi(x_s.c_str()), atoi(y_s.c_str()));
+            return inst;
+        }
+        else{
+            std::cerr << "Echec de chargement de 'Instance'" << std::endl;
+            return NULL; // En cas d'erreur la fonction renverra un pointeur NULL.
+        }
+
+    } 
+    
 }
+
+

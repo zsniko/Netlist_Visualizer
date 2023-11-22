@@ -10,9 +10,9 @@ using namespace std;
 namespace Netlist{
 
 
-    Shape::Shape(Symbol* s):owner_(s){ owner_->add(this); }
+    Shape::Shape(Symbol* s):owner_(s){ owner_->add(this); } // CTOR
 
-    Shape::~Shape(){ owner_->remove(this); }
+    Shape::~Shape(){ owner_->remove(this); } // DTOR
 
     Shape* Shape::fromXml ( Symbol* owner, xmlTextReaderPtr reader )
     {
@@ -57,20 +57,22 @@ namespace Netlist{
     /*LineShape*/ 
     LineShape::LineShape(Symbol* s, int x1, int y1, int x2, int y2)
         :Shape(s), x1_(x1), y1_(y1), x2_(x2), y2_(y2)
-    { }
-    LineShape::~LineShape(){ }
+    { } // CTOR
+    LineShape::~LineShape(){ } // DTOR
 
     Box LineShape::getBoundingBox() const
     {
-        return Box(x1_, y1_, x2_, y2_);
+        return Box(x1_, y1_, x2_, y2_); 
     }
 
+    // XML Driver for LineShape
     void LineShape::toXml(std::ostream& stream) const
     {
         stream << indent << "<line x1=\"" << LineShape::getX1() << "\" y1=\"" << LineShape::getY1() 
                 << "\" x2=\"" << LineShape::getX2() << "\" y2=\"" << LineShape::getY2() << "\"/>" << endl;
     }
 
+    // XML Parser for LineShape
     LineShape* LineShape::fromXml(Symbol* owner, xmlTextReaderPtr reader)
     {
         std::string x1 = xmlCharToString(xmlTextReaderGetAttribute(reader, (const xmlChar*)"x1"));
@@ -78,6 +80,7 @@ namespace Netlist{
         std::string x2 = xmlCharToString(xmlTextReaderGetAttribute(reader, (const xmlChar*)"x2"));
         std::string y2 = xmlCharToString(xmlTextReaderGetAttribute(reader, (const xmlChar*)"y2"));
         if ((not (x1.empty() and x2.empty() and y1.empty() and y2.empty()))){
+            // Create a new LineShape
             LineShape* lineshape = new LineShape(owner, atoi(x1.c_str()), atoi(y1.c_str()), atoi(x2.c_str()), atoi(y2.c_str()));
             return lineshape;
         }
@@ -90,20 +93,22 @@ namespace Netlist{
     /*BoxShape*/
     BoxShape::BoxShape(Symbol* s, const Box& b)
         :Shape(s), box_(b)
-    { }
-    BoxShape::~BoxShape(){ }
+    { } // CTOR
+    BoxShape::~BoxShape(){ } // DTOR
 
     Box BoxShape::getBoundingBox() const
     {
         return box_;
     }
 
+    // XML Driver for BoxShape
     void BoxShape::toXml(std::ostream& stream) const
     {
         stream << indent << "<box x1=\"" << box_.getX1() << "\" y1=\"" << box_.getY1() 
                 << "\" x2=\"" << box_.getX2() << "\" y2=\"" << box_.getY2() << "\"/>" << endl;
     }
 
+    // XML Parser for BoxShape
     BoxShape* BoxShape::fromXml(Symbol* owner, xmlTextReaderPtr reader)
     {
 
@@ -112,6 +117,7 @@ namespace Netlist{
         std::string x2 = xmlCharToString(xmlTextReaderGetAttribute(reader, (const xmlChar*)"x2"));
         std::string y2 = xmlCharToString(xmlTextReaderGetAttribute(reader, (const xmlChar*)"y2"));
         if ((not (x1.empty() and x2.empty() and y1.empty() and y2.empty()))){
+            // Create a new BoxShape
             BoxShape* boxshape = new BoxShape(owner, Box(atoi(x1.c_str()), atoi(y1.c_str()), atoi(x2.c_str()), atoi(y2.c_str())));
             return boxshape;
         }
@@ -124,20 +130,22 @@ namespace Netlist{
     /*EllipseShape*/
     EllipseShape::EllipseShape(Symbol* s, const Box& b)
         :Shape(s), box_(b)
-    { }
-    EllipseShape::~EllipseShape(){ }
+    { } // CTOR
+    EllipseShape::~EllipseShape(){ } // DTOR
 
     Box EllipseShape::getBoundingBox() const
     {
         return box_;
     }
 
+    // XML Driver for EllipseShape
     void EllipseShape::toXml(std::ostream& stream) const
     {
         stream << indent << "<ellipse x1=\"" << box_.getX1() << "\" y1=\"" << box_.getY1() 
                 << "\" x2=\"" << box_.getX2() << "\" y2=\"" << box_.getY2() << "\"/>" << endl;
     }
 
+    // XML Parser for EllipseShape
     EllipseShape* EllipseShape::fromXml(Symbol* owner, xmlTextReaderPtr reader)
     {
         std::string x1 = xmlCharToString(xmlTextReaderGetAttribute(reader, (const xmlChar*)"x1"));
@@ -145,6 +153,7 @@ namespace Netlist{
         std::string x2 = xmlCharToString(xmlTextReaderGetAttribute(reader, (const xmlChar*)"x2"));
         std::string y2 = xmlCharToString(xmlTextReaderGetAttribute(reader, (const xmlChar*)"y2"));
         if ((not (x1.empty() and x2.empty() and y1.empty() and y2.empty()))){
+            // Create a new EllipseShape
             EllipseShape* ellipseshape = new EllipseShape(owner, Box(atoi(x1.c_str()), atoi(y1.c_str()), atoi(x2.c_str()), atoi(y2.c_str())));
             return ellipseshape;
         }
@@ -157,14 +166,15 @@ namespace Netlist{
     /*ArcShape*/
     ArcShape::ArcShape(Symbol* s, const Box& b, int start, int span)
         :Shape(s), box_(b), start_(start), span_(span)
-    { }
-    ArcShape::~ArcShape(){ }
+    { } // CTOR
+    ArcShape::~ArcShape(){ } // DTOR
 
     Box ArcShape::getBoundingBox() const
     {
         return box_;
     }
 
+    // XML Driver for ArcShape
     void ArcShape::toXml(std::ostream& stream) const
     {
         stream << indent << "<arc x1=\"" << box_.getX1() << "\" y1=\"" << box_.getY1() 
@@ -172,6 +182,7 @@ namespace Netlist{
                 << "\" srart=\"" << ArcShape::getStart() << "\" span=\"" << ArcShape::getSpan() << "\"/>" << endl;
     }
 
+    // XML Parser for ArcShape
     ArcShape* ArcShape::fromXml(Symbol* owner, xmlTextReaderPtr reader)
     {
         std::string x1 = xmlCharToString(xmlTextReaderGetAttribute(reader, (const xmlChar*)"x1"));
@@ -182,6 +193,7 @@ namespace Netlist{
         std::string span = xmlCharToString(xmlTextReaderGetAttribute(reader, (const xmlChar*)"span"));
 
         if ((not (x1.empty() and x2.empty() and y1.empty() and y2.empty()))){
+            // Create a new ArcShape
             ArcShape* arcshape = new ArcShape(owner, Box(atoi(x1.c_str()), atoi(y1.c_str()), atoi(x2.c_str()), atoi(y2.c_str())), atoi(start.c_str()), atoi(span.c_str()));
             return arcshape;
         }
@@ -194,18 +206,19 @@ namespace Netlist{
     /*TermShape*/
 
     TermShape::TermShape(Symbol* s, const std::string& name, int x1, int y1, NameAlign align)
-        :Shape(s), term_(NULL), x1_(x1), y1_(y1), align_(align)
+        :Shape(s), term_(NULL), x1_(x1), y1_(y1), align_(align) // CTOR
     {
         term_ = s->getCell()->getTerm(name);
     }
 
-    TermShape::~TermShape(){ }
+    TermShape::~TermShape(){ } // DTOR
 
     Box TermShape::getBoundingBox() const
     {
         return Box(x1_, y1_, x1_, y1_);
     }
 
+    // Convert from NameAlign to string
     std::string TermShape::toString(NameAlign align) 
     {   
         switch(align){
@@ -223,6 +236,7 @@ namespace Netlist{
         }
     }
 
+    // Convert from string to NameAlign
     TermShape::NameAlign TermShape::toNameAlign(std::string align) 
     {
         if      (align == "top_left")        return TopLeft;
@@ -235,6 +249,7 @@ namespace Netlist{
         }
     }
 
+    // XML Driver for TermShape
     void TermShape::toXml(std::ostream& stream) const
     {
          stream << indent << "<term name=\"" << TermShape::getTerm()->getName() << "\" x1=\"" << TermShape::getX1() 
@@ -242,6 +257,7 @@ namespace Netlist{
                  << "\"/>" << endl;
     }
 
+    // XML Parser for TermShape
     TermShape* TermShape::fromXml(Symbol* owner, xmlTextReaderPtr reader)
     {
         std::string x1 = xmlCharToString(xmlTextReaderGetAttribute(reader, (const xmlChar*)"x1"));
@@ -250,6 +266,7 @@ namespace Netlist{
         std::string align = xmlCharToString(xmlTextReaderGetAttribute(reader, (const xmlChar*)"align"));
 
         if ((not (x1.empty() and y1.empty() and name.empty() and align.empty()))){
+            // Create a new TermShape
             TermShape* termshape = new TermShape(owner, name, atoi(x1.c_str()), atoi(y1.c_str()), TermShape::toNameAlign(align));
             return termshape;
         }

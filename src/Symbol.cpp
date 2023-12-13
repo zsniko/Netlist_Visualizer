@@ -11,21 +11,19 @@ using namespace std;
 
 namespace Netlist{
 
-    // CTOR
     Symbol::Symbol ( Cell* cell )
     : owner_(cell)
     , shapes_( )
     { }
 
-    // DTOR
     Symbol::~Symbol ()
     { }
 
-    // GETTERS
     Cell* Symbol::getCell () const 
     { 
         return owner_; 
     }
+
 
     Point Symbol::getTermPosition ( Term* t ) const 
     {
@@ -33,8 +31,7 @@ namespace Netlist{
     }
 
     TermShape* Symbol::getTermShape ( Term* t ) const 
-    {   
-        // Use iterator to find the shape in the vector
+    {
         for ( std::vector<Shape*>::const_iterator ishape = shapes_.begin(); ishape != shapes_.end(); ++ishape ){
             TermShape* termShape = dynamic_cast<TermShape*>(*ishape);
             if ( termShape )
@@ -44,22 +41,19 @@ namespace Netlist{
         return NULL;
     }
 
-    // SETTERS
     void Symbol::add( Shape* s )
     {
         if (s) shapes_.push_back(s);
     }
 
     void Symbol::remove( Shape* s )
-    {   
-        // Use iterator to find the shape in the vector
+    {
         for(std::vector<Shape*>::const_iterator ishape = shapes_.begin(); ishape != shapes_.end(); ++ishape){
             if ( *ishape == s )
                 shapes_.erase(ishape);
         }
     }
 
-    // XML Driver
     void Symbol::toXml( std::ostream& stream ) const
     {
         stream << indent++ << "<symbol>" << endl;
@@ -69,7 +63,6 @@ namespace Netlist{
         stream << --indent << "</symbol>" << endl;
     }
 
-    // XML Parser
     Symbol* Symbol::fromXml( Cell* cell, xmlTextReaderPtr reader)
     {
         const xmlChar* symbolTag = xmlTextReaderConstString( reader, (const xmlChar*)"symbol");

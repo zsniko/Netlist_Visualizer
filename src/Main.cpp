@@ -36,6 +36,7 @@ int main ( int argc, char* argv[] )
 
   cout << "\nContenu du <halfadder>:" << endl;
   halfadder->toXml( cout );
-  
+
+
   return 0;
 }

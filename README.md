@@ -78,4 +78,4 @@ Here is an example of how to use the API to create a full adder circuit:
   fa_or2->connect( "q"    , fa_cout );
 ```
 ## Example Execution
-![pipeline](example_and.png)
+![pipeline](example_fa.png)

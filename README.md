@@ -1,1 +1,1 @@
-# MOBJ
+# Netlist Visualizer C++/Qt

@@ -1,4 +1,4 @@
-// -*- explicit-buffer-name: "Instance.cpp<M1-MOBJ/7>" -*-
+// -*- explicit-buffer-name: "Instance.cpp<M1-MOBJ/8-10>" -*-
 
 #include "Instance.h"
 #include "Term.h"

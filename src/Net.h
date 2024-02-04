@@ -1,4 +1,4 @@
-// -*- explicit-buffer-name: "Net.h<M1-MOBJ/7>" -*-
+// -*- explicit-buffer-name: "Net.h<M1-MOBJ/8-10>" -*-
 
 #ifndef NETLIST_NET_H
 #define NETLIST_NET_H

@@ -1,42 +1,35 @@
-// -*- explicit-buffer-name: "Main.cpp<M1-MOBJ/7>" -*-
+// -*- explicit-buffer-name: "Main.cpp<M1-MOBJ/8-10>" -*-
 
 #include <string>
 #include <sstream>
 #include <iostream>
 #include <memory>
-using namespace std;
-
-#include "Term.h"
-#include "Net.h"
-#include "Instance.h"
 #include "Cell.h"
+#include <QApplication>
+#include <QtGui>
+#include "CellViewer.h"
 using namespace Netlist;
-
 using namespace std;
-
 
 int main ( int argc, char* argv[] )
 {
-  cout << "Chargement des modeles..." << endl;
-  //Cell* vdd = Cell::load( "vdd" );
-  // Symbol* s = vdd->getSymbol();
-  // s->toXml( cout );
-  //vdd->toXml(cout);
-  Cell::load( "vdd" );
-  Cell::load( "gnd" );
-  Cell::load( "TransistorN" );
-  Cell::load( "TransistorP" );
-  Cell::load( "and2" );
-  Cell::load( "or2" );
-  Cell* xor2      = Cell::load( "xor2" );
-  Cell* halfadder = Cell::load( "halfadder" );
+    cout << "Chargement des modeles..." << endl;
+    Cell::load( "vdd" );
+    Cell::load( "gnd" );
+    Cell::load( "TransistorN" );
+    Cell::load( "TransistorP" );
+    Cell::load( "and2" );
+    Cell::load( "or2" );
+    Cell::load( "xor2" );
+    Cell* halfadder = Cell::load( "halfadder" );
+    Cell* fulladder = Cell::load( "fulladder" );
 
-  cout << "\nContenu du <xor2>:" << endl;
-  xor2->toXml( cout );
-
-  cout << "\nContenu du <halfadder>:" << endl;
-  halfadder->toXml( cout );
-
-
-  return 0;
+    QApplication* qa = new QApplication( argc, argv );
+    CellViewer* viewer = new CellViewer(); // CellViewer Inherits from QMainWindow
+    viewer->setCell( halfadder );
+    viewer->show(); // Make the viewer visible on screen
+    int rvalue = qa->exec(); // Start the Qt event loop (and return the exit value of the application when loop ends)
+    delete qa; // Delete the QApplication object
+    return rvalue;
+    
 }

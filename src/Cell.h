@@ -1,4 +1,4 @@
-// -*- explicit-buffer-name: "Cell.h<M1-MOBJ/7>" -*-
+// -*- explicit-buffer-name: "Cell.h<M1-MOBJ/8-10>" -*-
 
 #ifndef NETLIST_CELL_H
 #define NETLIST_CELL_H

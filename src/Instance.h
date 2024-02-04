@@ -1,4 +1,4 @@
-// -*- explicit-buffer-name: "Instance.h<M1-MOBJ/7>" -*-
+// -*- explicit-buffer-name: "Instance.h<M1-MOBJ/8-10>" -*-
 
 #ifndef NETLIST_INSTANCE_H
 #define NETLIST_INSTANCE_H
